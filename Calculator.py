@@ -1,6 +1,5 @@
 import tkinter
 from tkinter import*
-import time
 
 val = ""
 A = 0
@@ -70,7 +69,7 @@ def buttonPlus_isClicked():
     global A
     global operator
     operator = "+"
-    A = int(val)
+    A = float(val)
     val = val + "+"
     data.set(val)
 
@@ -79,7 +78,7 @@ def buttonMinus_isClicked():
     global A
     global operator
     operator = "-"
-    A = int(val)
+    A = float(val)
     val = val + "-"
     data.set(val)
 
@@ -88,7 +87,7 @@ def buttonMultiply_isClicked():
     global A
     global operator
     operator = "*"
-    A = int(val)
+    A = float(val)
     val = val + "x"
     data.set(val)
 
@@ -97,7 +96,7 @@ def buttonDivide_isClicked():
     global A
     global operator
     operator = "/"
-    A = int(val)
+    A = float(val)
     val = val + "/"
     data.set(val)
 
@@ -110,19 +109,19 @@ def buttonEquals_isClicked():
     if operator is "+":
         n2 = int(val2.split("+")[1])
         result = A + n2
-        val = str(result)
+        val = str("%.2f"%result)
         data.set(result)
 
     if operator is "-":
         n2 = int(val2.split("-")[1])
         result = A - n2
-        val = str(result)
+        val = str("%.2f"%result)
         data.set(result)
 
     if operator is "*":
         n2 = int(val2.split("x")[1])
         result = A * n2
-        val = str(result)
+        val = str("%.2f"%result)
         data.set(result)
 
     if operator is "/":
@@ -131,8 +130,8 @@ def buttonEquals_isClicked():
             data.set("Can't divide by 0")
         else: 
             result = A / n2
-            val = str(result)
-            data.set(result)
+            val = str("%.2f"%result)
+            data.set(val)
 
 
 root = tkinter.Tk()
