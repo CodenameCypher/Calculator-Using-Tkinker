@@ -134,25 +134,25 @@ def buttonEquals_isClicked():
     global operator
     val2 = val
     if operator is "+":
-        n2 = int(val2.split("+")[1])
+        n2 = float(val2.split("+")[1])
         result = A + n2
         val = str("%.2f"%result)
         data.set(result)
 
     if operator is "-":
-        n2 = int(val2.split("-")[1])
+        n2 = float(val2.split("-")[1])
         result = A - n2
         val = str("%.2f"%result)
         data.set(result)
 
     if operator is "*":
-        n2 = int(val2.split("x")[1])
+        n2 = float(val2.split("x")[1])
         result = A * n2
         val = str("%.2f"%result)
         data.set(result)
 
     if operator is "/":
-        n2 = int(val2.split("/")[1])
+        n2 = float(val2.split("/")[1])
         if(n2 is 0) :
             data.set("Can't divide by 0")
         else: 
@@ -160,7 +160,7 @@ def buttonEquals_isClicked():
             val = str("%.2f"%result)
             data.set(val)
     if operator is '^':
-        n2 = int(val2.split("^")[1])
+        n2 = float(val2.split("^")[1])
         result = pow(A,n2)
         val = str("%.2f"%result)
         data.set(result)
