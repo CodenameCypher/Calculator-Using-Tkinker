@@ -54,6 +54,11 @@ def button0_isClicked():
     global val
     val = val + "0"
     data.set(val)
+    
+def buttonDot_isClicked():
+    global val
+    val = val + "."
+    data.set(val)
 
 def buttonC_isClicked():
     global val
@@ -62,6 +67,11 @@ def buttonC_isClicked():
     operator = ""
     A = 0
     val = ""
+    data.set(val)
+
+def buttonCE_isClicked():
+    global val
+    val = val[0:len(val)-1]
     data.set(val)
 
 def buttonPlus_isClicked():
@@ -100,6 +110,23 @@ def buttonDivide_isClicked():
     val = val + "/"
     data.set(val)
 
+def buttonPow_isClicked():
+    global val
+    global A
+    global operator
+    operator = "^"
+    A = float(val)
+    val = val + "^"
+    data.set(val)
+
+def buttonMod_isClicked():
+    global val
+    global A
+    global operator
+    operator = "MOD"
+    A = float(val)
+    val = val + "MOD"
+    data.set(val)
 
 def buttonEquals_isClicked():
     global val
@@ -132,10 +159,21 @@ def buttonEquals_isClicked():
             result = A / n2
             val = str("%.2f"%result)
             data.set(val)
+    if operator is '^':
+        n2 = int(val2.split("^")[1])
+        result = pow(A,n2)
+        val = str("%.2f"%result)
+        data.set(result)
+
+    if operator is 'MOD':
+        n2 = int(val2.split("MOD")[1])
+        result = A%n2
+        val = str("%.2f"%result)
+        data.set(result)
 
 
 root = tkinter.Tk()
-root.geometry("250x400+300+300")
+root.geometry("350x400+300+300")
 root.title("Calculator Using Tkinter")
 
 
@@ -158,43 +196,51 @@ buttonRow4.pack(expand = True, fill = "both")
 
 
 #button row 1 buttons 1 2 3 +
+button_Mod = Button(buttonRow1,text="Mod",font=("times new roman",10,),relief = GROOVE,bg='#171717',fg='yellow',border=1,command=buttonMod_isClicked)
+button_Mod.pack(side = LEFT, expand=True, fill="both")
 button_1 = Button(buttonRow1,text="1",font=("times new roman",16),relief = GROOVE,bg='#171717',fg='white',border=1,command=button1_isClicked)
 button_1.pack(side = LEFT, expand=True, fill="both")
 button_2 = Button(buttonRow1,text="2",font=("times new roman",16),relief = GROOVE,bg='#171717',fg='white',border=1,command=button2_isClicked)
 button_2.pack(side = LEFT, expand=True, fill="both")
 button_3 = Button(buttonRow1,text="3",font=("times new roman",16),relief = GROOVE,bg='#171717',fg='white',border=1,command=button3_isClicked)
 button_3.pack(side = LEFT, expand=True, fill="both")
-button_plus = Button(buttonRow1,text="+",font=("times new roman",16),relief = GROOVE,bg='#171717',fg='white',border=1,command=buttonPlus_isClicked)
+button_plus = Button(buttonRow1,text="+",font=("times new roman",14),relief = GROOVE,bg='#171717',fg='yellow',border=1,command=buttonPlus_isClicked)
 button_plus.pack(side = LEFT, expand=True, fill="both")
 
-#button row 2 buttons 4 5 6 -
+#button row 2 buttons ^ 4 5 6 -
+button_Pow = Button(buttonRow2,text="^",font=("times new roman",21),relief = GROOVE,bg='#171717',fg='yellow',border=1,command=buttonPow_isClicked)
+button_Pow.pack(side = LEFT, expand=True, fill="both")
 button_4 = Button(buttonRow2,text="4",font=("times new roman",16),relief = GROOVE,bg='#171717',fg='white',border=1,command=button4_isClicked)
 button_4.pack(side = LEFT, expand=True, fill="both")
 button_5 = Button(buttonRow2,text="5",font=("times new roman",16),relief = GROOVE,bg='#171717',fg='white',border=1,command=button5_isClicked)
 button_5.pack(side = LEFT, expand=True, fill="both")
 button_6 = Button(buttonRow2,text="6",font=("times new roman",16),relief = GROOVE,bg='#171717',fg='white',border=1,command=button6_isClicked)
 button_6.pack(side = LEFT, expand=True, fill="both")
-button_minus = Button(buttonRow2,text="-",font=("times new roman",16),relief = GROOVE,bg='#171717',fg='white',border=1,command=buttonMinus_isClicked)
+button_minus = Button(buttonRow2,text="-",font=("times new roman",16),relief = GROOVE,bg='#171717',fg='yellow',border=1,command=buttonMinus_isClicked)
 button_minus.pack(side = LEFT, expand=True, fill="both")
 
-#button row 3 buttons 7 8 9 x
+#button row 3 buttons CE 7 8 9 x
+button_ce = Button(buttonRow3,text="CE",font=("times new roman",13),relief = GROOVE,bg='red',fg='white',border=2,command=buttonCE_isClicked)
+button_ce.pack(side = LEFT, expand=True, fill="both")
 button_7 = Button(buttonRow3,text="7",font=("times new roman",16),relief = GROOVE,bg='#171717',fg='white',border=1,command=button7_isClicked)
 button_7.pack(side = LEFT, expand=True, fill="both")
 button_8 = Button(buttonRow3,text="8",font=("times new roman",16),relief = GROOVE,bg='#171717',fg='white',border=1,command=button8_isClicked)
 button_8.pack(side = LEFT, expand=True, fill="both")
 button_9 = Button(buttonRow3,text="9",font=("times new roman",16),relief = GROOVE,bg='#171717',fg='white',border=1,command=button9_isClicked)
 button_9.pack(side = LEFT, expand=True, fill="both")
-button_multiply = Button(buttonRow3,text="x",font=("times new roman",16),relief = GROOVE,bg='#171717',fg='white',border=1,command=buttonMultiply_isClicked)
+button_multiply = Button(buttonRow3,text="x",font=("times new roman",16),relief = GROOVE,bg='#171717',fg='yellow',border=1,command=buttonMultiply_isClicked)
 button_multiply.pack(side = LEFT, expand=True, fill="both")
 
-#button row 4 buttons c 0 = /
+#button row 4 buttons c . 0 = /
 button_c = Button(buttonRow4,text="C",font=("times new roman",16),relief = GROOVE,bg='red',fg='white',border=2,command=buttonC_isClicked)
 button_c.pack(side = LEFT, expand=True, fill="both")
+buttonDot = Button(buttonRow4,text='.',font=('times new roman',16),relief=GROOVE,bg='#171717',fg='white',border=1,command=buttonDot_isClicked)
+buttonDot.pack(side = LEFT,expand = True, fill = 'both')
 button_0 = Button(buttonRow4,text="0",font=("times new roman",16),relief = GROOVE,bg='#171717',fg='white',border=1,command=button0_isClicked)
 button_0.pack(side = LEFT, expand=True, fill="both")
-button_equals = Button(buttonRow4,text="=",font=("times new roman",16),relief = GROOVE,bg='orange',fg='white',border=1,command=buttonEquals_isClicked)
+button_equals = Button(buttonRow4,text="=",font=("times new roman",12),relief = GROOVE,bg='orange',fg='white',border=1,command=buttonEquals_isClicked)
 button_equals.pack(side = LEFT, expand=True, fill="both")
-button_divide = Button(buttonRow4,text="/",font=("times new roman",16),relief = GROOVE,bg='#171717',fg='white',border=1,command=buttonDivide_isClicked)
+button_divide = Button(buttonRow4,text="/",font=("times new roman",16),relief = GROOVE,bg='#171717',fg='yellow',border=1,command=buttonDivide_isClicked)
 button_divide.pack(side = LEFT, expand=True, fill="both")
 
 
